@@ -26,6 +26,7 @@ const metadata = {
   UTC: 'Etc/UTC',
   epoch: '1970-01-01',
   UTCTimePart: 'T00:00:00Z',
+  time_ISO_8601_Regex: /T[0-9]{2}:[0-9]{2}:[0-9]{2}(Z|[\+\-][0-9]{2}:[0-9]{2})?$/,
   time_ISO_8601: 'THH:mm:ssZ',
   date_ISO_8601: 'YYYY-MM-DD',
   time_IANA_tz: /([0-9]{2}):([0-9]{2}):([0-9]{2})(?:@(.+))+/,

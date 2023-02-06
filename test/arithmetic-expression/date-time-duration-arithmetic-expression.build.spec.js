@@ -30,6 +30,26 @@ describe(chalk.blue('Date/time/duration expression test'), function() {
       }
   });
 
+  it('should do date subtraction when dates express timezone information', function() {
+    const text = 'date("2012-01-02T00:00:00+04:00") - date("2012-01-02T00:00:00Z")';
+    const parsedGrammar = FEEL.parse(text);
+    const result = parsedGrammar.build();
+    expect(result.isDuration).to.be.true;
+    expect(result.isDtd).to.be.true;
+    expect(result.days).to.equal(0);
+    expect(result.hours).to.equal(-4);
+  });
+
+  it('should do date subtraction when only one date expresses timezone information', function() {
+    const text = 'date("2012-01-02T00:00:00+04:00") - date("2012-01-02")';
+    const parsedGrammar = FEEL.parse(text);
+    const result = parsedGrammar.build();
+    expect(result.isDuration).to.be.true;
+    expect(result.isDtd).to.be.true;
+    expect(result.days).to.equal(0);
+    expect(result.hours).to.equal(-4);
+  });
+
   it('should do time subtraction and return a duration', function() {
       const text = 'time("T13:10:06") - time("T13:10:05")';
       const parsedGrammar = FEEL.parse(text);
